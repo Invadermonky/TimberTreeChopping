@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: Timber
+Implementation-Version: 1.12.2-1.0.0
+Specification-Vendor: examplemodsareus
+Specification-Title: examplemod
+Implementation-Timestamp: 2022-06-18T21:20:49-0700
+Specification-Version: 1
+Implementation-Vendor: examplemodsareus
+

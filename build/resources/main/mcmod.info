@@ -1,0 +1,10 @@
+[{
+  "modid": "timber",
+  "name": "Timber!",
+  "description": "Simple mod to chop down whole trees.",
+  "version": "1.0.0",
+  "mcversion": "${version}",
+  "url": "",
+  "authorList": ["Invader"],
+  "credits": "Invader"
+}]
