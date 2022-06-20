@@ -1,4 +1,4 @@
-Args: "--in-jar", "C:\Users\Invader\Documents\Programming_Minecraft\Timber\build\libs\Timber-1.12.2-1.0.0.jar", "--out-jar", "C:\Users\Invader\Documents\Programming_Minecraft\Timber\build\reobfJar\output.jar", "--srg-in", "C:\Users\Invader\Documents\Programming_Minecraft\Timber\build\createMcpToSrg\output.tsrg", "--live"
+Args: "--in-jar", "C:\Users\Invader\Documents\Programming_Minecraft\Timber\build\libs\Timber-1.12.2-1.1.0.jar", "--out-jar", "C:\Users\Invader\Documents\Programming_Minecraft\Timber\build\reobfJar\output.jar", "--srg-in", "C:\Users\Invader\Documents\Programming_Minecraft\Timber\build\createMcpToSrg\output.tsrg", "--live"
 Classpath: C:\Users\Invader\.gradle\caches\forge_gradle\maven_downloader\net\md-5\SpecialSource\1.8.3\SpecialSource-1.8.3-shaded.jar
 Classpath: C:\Users\Invader\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.12.2-14.23.5.2860_mapped_snapshot_20171003-1.12\forge-1.12.2-14.23.5.2860_mapped_snapshot_20171003-1.12-recomp.jar
 Classpath: C:\Users\Invader\.gradle\caches\forge_gradle\minecraft_repo\versions\1.12.2\client-extra.jar

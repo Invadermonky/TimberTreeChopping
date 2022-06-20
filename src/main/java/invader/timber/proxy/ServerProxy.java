@@ -15,8 +15,8 @@ public class ServerProxy extends CommonProxy {
         UUID playerID = event.getEntityPlayer().getPersistentID();
 
         if(!ConfigHandler.disableShift) {
-            if ((event.getEntityPlayer().isSneaking() && !ConfigHandler.reverseShift) ||
-                    (!event.getEntityPlayer().isSneaking() && ConfigHandler.reverseShift))
+            if ((event.getEntityPlayer().isSneaking() && !ConfigHandler.invertCrouch) ||
+                    (!event.getEntityPlayer().isSneaking() && ConfigHandler.invertCrouch))
                 crouching = false;
         }
 

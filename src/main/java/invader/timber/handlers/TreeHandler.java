@@ -33,8 +33,7 @@ public class TreeHandler {
             tempBlocks.clear();
         }
 
-        Set<BlockPos> tempLeaves = new HashSet<>();
-        tempLeaves.addAll(tree.getLeaves());
+        Set<BlockPos> tempLeaves = new HashSet<>(tree.getLeaves());
 
         for (BlockPos pos1 : tempLeaves) {
             checkedBlocks.add(pos1);
@@ -104,13 +103,24 @@ public class TreeHandler {
         if (checkedBlocks.contains(pos))
             return false;
 
-        if(world.getBlockState(pos).getBlock() != origin) {
-            if (ConfigHandler.destroyLeaves && ConfigHandler.leaf_whitelist.contains(world.getBlockState(pos).getBlock().getUnlocalizedName())) {
+        Block block = world.getBlockState(pos).getBlock();
+
+        if(block.getRegistryName().toString().isEmpty())
+            return false;
+
+        if(world.getBlockState(pos).getBlock() != origin && ConfigHandler.destroyLeaves) {
+            if (ConfigHandler.leaf_whitelist.contains(block.getRegistryName().toString()) ||
+                    ConfigHandler.leaf_whitelist.contains(block.getRegistryName().toString() + ":" + block.getMetaFromState(block.getDefaultState()))) {
                 tree.insertLeaves(pos);
                 return false;
             }
 
-            if (ConfigHandler.destroyLeaves && world.getBlockState(pos).getBlock().isLeaves(world.getBlockState(pos), world, pos)) {
+            if (!ConfigHandler.leaf_blacklist.contains(block.getRegistryName().toString()) ||
+                    ConfigHandler.leaf_blacklist.contains((block.getRegistryName().toString() + ":" + block.getMetaFromState(block.getDefaultState())))) {
+                return false;
+            }
+
+            if (world.getBlockState(pos).getBlock().isLeaves(world.getBlockState(pos), world, pos)) {
                 tree.insertLeaves(pos);
             }
             return false;

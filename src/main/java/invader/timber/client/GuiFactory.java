@@ -6,14 +6,21 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.DefaultGuiFactory;
 import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiFactory extends DefaultGuiFactory {
     public GuiFactory() {
         super(Timber.MOD_ID, Timber.MOD_NAME);
     }
 
-    @Override
     public GuiScreen createConfigGui(GuiScreen guiScreen) {
-        return (GuiScreen) new GuiConfig(guiScreen, (new ConfigElement(ConfigHandler.config.getCategory("general"))).getChildElements(), modid, false, false, title);
+        List<IConfigElement> elementList = new ArrayList<>();
+        for (String s : ConfigHandler.config.getCategoryNames()) {
+            elementList.add(new ConfigElement(ConfigHandler.config.getCategory(s)));
+        }
+        return new GuiConfig(guiScreen, elementList, modid, false, false, title);
     }
 }

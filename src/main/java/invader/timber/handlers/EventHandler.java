@@ -9,6 +9,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 public class EventHandler {
     @SubscribeEvent
     public void onServerConnect(PlayerEvent.PlayerLoggedInEvent loggedInEvent) {
-        Timber.network.sendTo(new ServerSettingsMessage(ConfigHandler.reverseShift, ConfigHandler.disableShift), (EntityPlayerMP) loggedInEvent.player);
+        Timber.network.sendTo(new ServerSettingsMessage(ConfigHandler.invertCrouch, ConfigHandler.disableShift), (EntityPlayerMP) loggedInEvent.player);
     }
 }

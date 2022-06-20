@@ -37,7 +37,7 @@ public class ClientSettingsMessage implements IMessage {
             mainThread.addScheduledTask(new Runnable() {
                 @Override
                 public void run() {
-                    ConfigHandler.reverseShift = message.client_reverseShift;
+                    ConfigHandler.invertCrouch = message.client_reverseShift;
                     ConfigHandler.disableShift = message.client_disableShift;
                 }
             });
