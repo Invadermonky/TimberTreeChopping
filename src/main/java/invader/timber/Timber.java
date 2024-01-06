@@ -22,7 +22,7 @@ public class Timber {
 
     public static final String MOD_ID = "timber";
     public static final String MOD_NAME = "Timber!";
-    public static final String MOD_VERSION = "1.1.0";
+    public static final String MOD_VERSION = "1.2.0";
     public static final String GUI_FACTORY = "invader.timber.client.GuiFactory";
     public static final String CLIENT_PROXY = "invader.timber.proxy.CommonProxy";
     public static final String SERVER_PROXY = "invader.timber.proxy.ServerProxy";
