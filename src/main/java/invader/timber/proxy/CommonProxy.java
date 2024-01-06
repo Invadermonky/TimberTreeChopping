@@ -105,7 +105,7 @@ public class CommonProxy {
 
     public void setToolDamage(EntityPlayer player, ItemStack stack) {
         if(!player.isCreative() && stack.isItemStackDamageable()) {
-            int toolDamage = (stack.getItemDamage() + (int) (playerData.get(player.getPersistentID()).logCount * ConfigHandler.toolDamage * getUnbreakingModifier(stack)));
+            int toolDamage = (int) (playerData.get(player.getPersistentID()).logCount * ConfigHandler.toolDamage);
             stack.damageItem(toolDamage, player);
         }
     }
@@ -147,6 +147,6 @@ public class CommonProxy {
         if (ConfigHandler.axe_whitelist.contains(stackName))
             return true;
 
-        return stack.getItem() instanceof ItemAxe;
+        return stack.getItem() instanceof ItemAxe || stack.getItem().getToolClasses(stack).contains("axe");
     }
 }

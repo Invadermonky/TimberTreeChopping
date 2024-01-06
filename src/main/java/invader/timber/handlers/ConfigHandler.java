@@ -18,7 +18,6 @@ public class ConfigHandler {
 
     public static Configuration config;
 
-    public static boolean destroyLeaves;
     public static boolean invertCrouch;
     public static boolean disableShift;
     public static boolean dynamicBreakSpeed;
@@ -33,7 +32,6 @@ public class ConfigHandler {
     public static List<String> leaf_whitelist;
     public static List<String> leaf_blacklist;
 
-    private static Property prop_destroyLeaves;
     private static Property prop_invertCrouch;
     private static Property prop_disableShift;
     private static Property prop_dynamicBreakSpeed;
@@ -50,14 +48,13 @@ public class ConfigHandler {
         config = new Configuration(configFile);
         config.load();
         loadConfig();
-        setPropertyOrder();;
+        setPropertyOrder();
     }
 
     private static void setPropertyOrder() {
         List<String> propOrder_general = new ArrayList<>();
         propOrder_general.add(prop_invertCrouch.getName());
         propOrder_general.add(prop_disableShift.getName());
-        propOrder_general.add(prop_destroyLeaves.getName());
         propOrder_general.add(prop_dynamicBreakSpeed.getName());
 
         config.setCategoryPropertyOrder(CATEGORY_GENERAL, propOrder_general);
@@ -80,11 +77,6 @@ public class ConfigHandler {
     }
 
     public static void loadConfig() {
-
-        prop_destroyLeaves = config.get(CATEGORY_GENERAL, "Destroy Leaves", true);
-        prop_destroyLeaves.setComment("Destroy leaf blocks on tree felling.");
-        destroyLeaves = prop_destroyLeaves.getBoolean();
-
         prop_invertCrouch = config.get(CATEGORY_GENERAL, "Invert Crouch", false);
         prop_invertCrouch.setComment("Requires crouch for tree felling.");
         invertCrouch = prop_invertCrouch.getBoolean();

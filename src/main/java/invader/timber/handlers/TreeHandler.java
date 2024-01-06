@@ -2,6 +2,7 @@ package invader.timber.handlers;
 
 import invader.timber.TreeStructure;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -108,7 +109,7 @@ public class TreeHandler {
         if(block.getRegistryName().toString().isEmpty())
             return false;
 
-        if(world.getBlockState(pos).getBlock() != origin && ConfigHandler.destroyLeaves) {
+        if(world.getBlockState(pos).getBlock() != origin) {
             if (ConfigHandler.leaf_whitelist.contains(block.getRegistryName().toString()) ||
                     ConfigHandler.leaf_whitelist.contains(block.getRegistryName().toString() + ":" + block.getMetaFromState(block.getDefaultState()))) {
                 tree.insertLeaves(pos);
@@ -136,10 +137,11 @@ public class TreeHandler {
             TreeStructure temp_tree = trees.get(player.getPersistentID());
 
             for (BlockPos pos : temp_tree.getWood()) {
+                Block block = world.getBlockState(pos).getBlock();
                 if (soundReduced <= 1) {
-                    world.destroyBlock((pos), true);
+                    block.harvestBlock(world, player, pos, world.getBlockState(pos), null, player.getHeldItemMainhand());
                 } else {
-                    world.getBlockState(pos).getBlock().dropBlockAsItem(world, pos, world.getBlockState(pos), 1);
+                    block.harvestBlock(world, player, pos, world.getBlockState(pos), null, player.getHeldItemMainhand());
                 }
                 world.setBlockToAir(pos);
                 soundReduced++;
@@ -147,16 +149,14 @@ public class TreeHandler {
 
             soundReduced = 0;
 
-            if (ConfigHandler.destroyLeaves) {
-                for (BlockPos pos : temp_tree.getLeaves()) {
-                    if(soundReduced <= 1) {
-                        world.destroyBlock(pos, true);
-                    } else {
-                        world.getBlockState(pos).getBlock().dropBlockAsItem(world, pos, world.getBlockState(pos), 1);
-                    }
-                    world.setBlockToAir(pos);
-                    soundReduced++;
+            for (BlockPos pos : temp_tree.getLeaves()) {
+                if(soundReduced <= 1) {
+                    world.destroyBlock(pos, true);
+                } else {
+                    world.getBlockState(pos).getBlock().dropBlockAsItem(world, pos, world.getBlockState(pos), 1);
                 }
+                world.setBlockToAir(pos);
+                soundReduced++;
             }
         }
     }
